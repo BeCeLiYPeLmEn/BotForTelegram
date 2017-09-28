@@ -1,0 +1,85 @@
+const tasks = [
+
+    {
+    img:'5-1.jpg',
+    answer:'111 '
+    },
+    {
+    img:'5-2.jpg',
+    answer:'110'
+    },
+    {
+    img:'5-3.jpg' ,
+    answer:'11'   
+    },
+    {
+    img:'5-4.jpg',
+    answer:'14'    
+    },
+    {
+    img:'5-5.jpg',
+    answer:'1011'    
+    },
+    {
+    img:'9-1-1.jpg',
+    answer:'24'    
+    },
+    {
+    img:'9-1-2.jpg',
+    answer:'10'    
+    },
+    {
+    img:'9-1-3.jpg',
+    answer:'7'    
+    },
+    {
+    img:'9-1-4.jpg',
+    answer:'16'    
+    },
+    {
+    img:'9-1-5.jpg',
+    answer:'28'    
+    },
+    {
+    img:'9-2-1.jpg',
+    answer:'1'    
+    },
+    {
+    img:'9-2-2.jpg',
+    answer:'3'    
+    },
+    {
+    img:'9-2-3.jpg',
+    answer:'3'    
+    },
+    {
+    img:'9-2-4.jpg',
+    answer:'4'    
+    },
+    {
+    img:'9-2-5.jpg',
+    answer:'2'    
+    },
+    {
+    img:'10-1.jpg',
+    answer:'ОАУАО'    
+    },
+    {
+    img:'10-2.jpg',
+    answer:'ОООУО'    
+    },
+    {
+    img:'10-3.jpg',
+    answer:'УААУО'    
+    },
+    {
+    img:'10-4.jpg',
+    answer:'УОУАУ'
+    },
+    {
+    img:'10-5.jpg',
+    answer:'АРККК'    
+    },
+];
+
+module.exports = tasks;

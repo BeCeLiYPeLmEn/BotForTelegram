@@ -1,49 +1,52 @@
+
 const TelegramBot = require('node-telegram-bot-api');
 
 const token = '445138642:AAFLiCODZoPEXR9mAznxd5cfWkJwcTuMvgc';
 
 const bot = new TelegramBot(token, { polling: true });
 
-//const hel=["Дарова","Здарова","Хай","Гутен Так"];
+const tasks = require ('./tasks.js');
 
-bot.onText(/^\/start/, (msg, match) => {
+const users = {};
 
-    const chatId = msg.chat.id;
-    bot.sendMessage(chatId,"Привет , друг.");
-    bot.sendMessage(chatId, "Давай знакомится?");
-});
-bot.onText(/^Давай|Го$/, (msg, match) => {
-    const chatId = msg.chat.id;
-    bot.sendMessage(chatId, "Меня зовут NaNik, а тебя ?");
-});
-bot.onText(/^Я (.+)$/, (msg, match) => {
-    const chatId = msg.chat.id;
-    bot.sendMessage(chatId, "Приятно познакомится,"+match[1]);
-});
-bot.onText(/^А меня (.+)$/, (msg, match) => {
-    const chatId = msg.chat.id;
-    bot.sendMessage(chatId, "Приятно познакомится,"+match[1]);
+
+
+const startMenu =JSON.stringify({
+  
+    inline_keyboard:[
+  
+        [{ text:'Я готов!', callback_data:'getTask'}]
+    ]
 });
 
-bot.onText(/^Ты (.+)$/, (msg, match) => {
-    const chatId = msg.chat.id;
-    bot.sendMessage(chatId, "Сам такой");
+
+bot.onText(/\/start/, (msg, match) => {
+    users[msg.chat.id]={task:0};
+    bot.sendMessage(msg.chat.id,'Привет дорогой друг');
+    bot.sendMessage(msg.chat.id,'Я пришлю тебе случайное задание и ты должен его решить! Ты готов быть самым умным (НЕТ)',{reply_markup: startMenu});    
 });
 
-bot.onText(/^Кто первый ?\| Кто первый $/, (msg, match) => {
-    const chatId = msg.chat.id;
-    bot.sendMessage(chatId, "Лада конечно");
-});
-bot.onText(/^Как дела?|Как жизнь?/, (msg, match) => {
-    const chatId = msg.chat.id;
-    bot.sendMessage(chatId, "Отлично , а у тебя ?");
-});
-bot.onText(/^Отлично|Хорошо|Заебца|Охуенно/, (msg, match) => {
-    const chatId = msg.chat.id;
-    bot.sendMessage(chatId, "Ну и отлично.");
-});
-bot.onText(/^Плохо|Херово |Не очень|Так себе|Хуево/, (msg, match) => {
-    const chatId = msg.chat.id;
-    bot.sendMessage(chatId, "А почему?");
+bot.onText(/.+/,(msg,match) =>{
+     if(users[msg.chat.id].task!=0){    
+        if(users[msg.chat.id].task.answer==msg.text){
+            bot.sendMessage(msg.chat.id,'Все правильно! Хочешь еще ?',{reply_markup: startMenu});   
+          users[msg.chat.id].task=0;            
+        }
+        else bot.sendMessage(msg.chat.id,'Неправильно :(');
+    }
 });
 
+ bot.on('callback_query',cbQuery =>{
+
+    const chatId = cbQuery.message.chat.id; 
+    const msgId = cbQuery.message.message_id;
+
+    if (cbQuery.data == 'getTask'){
+      users[chatId].task=tasks[0];
+      bot.editMessageText("Загружаю задание",{chat_id: chatId, message_id: msgId});
+      bot.answerCallbackQuery(cbQuery.id,"",false);
+      bot.sendPhoto(chatId,__dirname+'/./images/'+users[chatId].task.img);
+    }
+});
+
+console.log('Сервер запущен');
