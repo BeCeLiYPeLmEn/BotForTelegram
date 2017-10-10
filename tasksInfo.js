@@ -1,4 +1,4 @@
-const tasks = [
+const tasksInfo = [
     {
     img:"1-1.jpg",
     answer:"101F"
@@ -810,4 +810,4 @@ const tasks = [
 
 ];
 
-module.exports = tasks;
+module.exports = tasksInfo;
