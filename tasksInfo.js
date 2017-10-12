@@ -104,18 +104,6 @@ const tasksInfo = [
     answer:"xzy"
     },
      {
-    img:"3-1.jpg",
-    answer:"11"
-    },
-     {
-    img:"3-2.jpg",
-    answer:"18"
-    },
-     {
-    img:"3-3.jpg",
-    answer:"25"
-    },
-     {
     img:"3-4.jpg",
     answer:"4"
     },
@@ -134,18 +122,6 @@ const tasksInfo = [
      {
     img:"3-8.jpg",
     answer:"4"
-    },
-    {
-    img:"3-9.jpg",
-    answer:"46"
-    },
-     {
-    img:"3-10.jpg",
-    answer:"36"
-    },
-     {
-    img:"3-11.jpg",
-    answer:"35"
     },
      {
     img:"4-1-1.jpg",
