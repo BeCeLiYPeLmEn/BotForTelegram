@@ -9,6 +9,7 @@
   "author": "NaN Company",
   "license": "ISC",
   "dependencies": {
+    "lowdb": "^1.0.0",
     "node-telegram-bot-api": "^0.28.0"
   }
 }
